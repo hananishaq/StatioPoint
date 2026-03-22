@@ -1,0 +1,124 @@
+
+<!-- saved from url=(0069)file:///C:/Users/LAPTOP%20EXPERT/Downloads/statiopoint_erd_clean.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body><div style="background:#ffffff; padding:24px; border-radius:12px;">
+<svg width="100%" viewBox="0 0 680 620" xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;">
+
+  <!-- USERS TABLE -->
+  <rect x="30" y="30" width="180" height="234" rx="8" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1.5"></rect>
+  <rect x="30" y="30" width="180" height="36" rx="8" fill="#4F46E5"></rect>
+  <rect x="30" y="54" width="180" height="12" fill="#4F46E5"></rect>
+  <text x="120" y="53" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">Users</text>
+  <line x1="30" y1="66" x2="210" y2="66" stroke="#4F46E5" stroke-width="1"></line>
+  <text x="42" y="82" fill="#1e1b4b" font-size="11" font-weight="600">id</text><text x="140" y="82" fill="#6366f1" font-size="10">INT PK</text>
+  <line x1="30" y1="89" x2="210" y2="89" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="103" fill="#1e1b4b" font-size="11">fullName</text><text x="140" y="103" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="30" y1="110" x2="210" y2="110" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="124" fill="#1e1b4b" font-size="11">username</text><text x="140" y="124" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="30" y1="131" x2="210" y2="131" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="145" fill="#1e1b4b" font-size="11">email</text><text x="140" y="145" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="30" y1="152" x2="210" y2="152" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="166" fill="#1e1b4b" font-size="11">password</text><text x="140" y="166" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="30" y1="173" x2="210" y2="173" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="187" fill="#1e1b4b" font-size="11">role</text><text x="140" y="187" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="30" y1="194" x2="210" y2="194" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="208" fill="#1e1b4b" font-size="11">branch</text><text x="140" y="208" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="30" y1="215" x2="210" y2="215" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="229" fill="#1e1b4b" font-size="11">isActive</text><text x="140" y="229" fill="#6b7280" font-size="10">BIT</text>
+  <line x1="30" y1="236" x2="210" y2="236" stroke="#c7d2fe" stroke-width="0.5"></line>
+  <text x="42" y="250" fill="#1e1b4b" font-size="11">createdAt</text><text x="140" y="250" fill="#6b7280" font-size="10">DATETIME</text>
+
+  <!-- PRODUCTS TABLE -->
+  <rect x="470" y="30" width="180" height="213" rx="8" fill="#F0FDF4" stroke="#16A34A" stroke-width="1.5"></rect>
+  <rect x="470" y="30" width="180" height="36" rx="8" fill="#16A34A"></rect>
+  <rect x="470" y="54" width="180" height="12" fill="#16A34A"></rect>
+  <text x="560" y="53" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">Products</text>
+  <line x1="470" y1="66" x2="650" y2="66" stroke="#16A34A" stroke-width="1"></line>
+  <text x="482" y="82" fill="#14532d" font-size="11" font-weight="600">id</text><text x="580" y="82" fill="#16a34a" font-size="10">INT PK</text>
+  <line x1="470" y1="89" x2="650" y2="89" stroke="#bbf7d0" stroke-width="0.5"></line>
+  <text x="482" y="103" fill="#14532d" font-size="11">name</text><text x="580" y="103" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="470" y1="110" x2="650" y2="110" stroke="#bbf7d0" stroke-width="0.5"></line>
+  <text x="482" y="124" fill="#14532d" font-size="11">sku</text><text x="580" y="124" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="470" y1="131" x2="650" y2="131" stroke="#bbf7d0" stroke-width="0.5"></line>
+  <text x="482" y="145" fill="#14532d" font-size="11">category</text><text x="580" y="145" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="470" y1="152" x2="650" y2="152" stroke="#bbf7d0" stroke-width="0.5"></line>
+  <text x="482" y="166" fill="#14532d" font-size="11">price</text><text x="580" y="166" fill="#6b7280" font-size="10">DECIMAL</text>
+  <line x1="470" y1="173" x2="650" y2="173" stroke="#bbf7d0" stroke-width="0.5"></line>
+  <text x="482" y="187" fill="#14532d" font-size="11">stock</text><text x="580" y="187" fill="#6b7280" font-size="10">INT</text>
+  <line x1="470" y1="194" x2="650" y2="194" stroke="#bbf7d0" stroke-width="0.5"></line>
+  <text x="482" y="208" fill="#14532d" font-size="11">minStock</text><text x="580" y="208" fill="#6b7280" font-size="10">INT</text>
+  <line x1="470" y1="215" x2="650" y2="215" stroke="#bbf7d0" stroke-width="0.5"></line>
+  <text x="482" y="229" fill="#14532d" font-size="11">createdAt</text><text x="580" y="229" fill="#6b7280" font-size="10">DATETIME</text>
+
+  <!-- SALES TABLE -->
+  <rect x="30" y="370" width="180" height="192" rx="8" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"></rect>
+  <rect x="30" y="370" width="180" height="36" rx="8" fill="#EA580C"></rect>
+  <rect x="30" y="394" width="180" height="12" fill="#EA580C"></rect>
+  <text x="120" y="393" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">Sales</text>
+  <line x1="30" y1="406" x2="210" y2="406" stroke="#EA580C" stroke-width="1"></line>
+  <text x="42" y="422" fill="#7c2d12" font-size="11" font-weight="600">id</text><text x="140" y="422" fill="#ea580c" font-size="10">INT PK</text>
+  <line x1="30" y1="429" x2="210" y2="429" stroke="#fed7aa" stroke-width="0.5"></line>
+  <text x="42" y="443" fill="#7c2d12" font-size="11" font-weight="600">userId</text><text x="140" y="443" fill="#ea580c" font-size="10">INT FK</text>
+  <line x1="30" y1="450" x2="210" y2="450" stroke="#fed7aa" stroke-width="0.5"></line>
+  <text x="42" y="464" fill="#7c2d12" font-size="11">totalAmount</text><text x="148" y="464" fill="#6b7280" font-size="10">DEC</text>
+  <line x1="30" y1="471" x2="210" y2="471" stroke="#fed7aa" stroke-width="0.5"></line>
+  <text x="42" y="485" fill="#7c2d12" font-size="11">paymentType</text><text x="152" y="485" fill="#6b7280" font-size="10">NV</text>
+  <line x1="30" y1="492" x2="210" y2="492" stroke="#fed7aa" stroke-width="0.5"></line>
+  <text x="42" y="506" fill="#7c2d12" font-size="11">status</text><text x="140" y="506" fill="#6b7280" font-size="10">NVARCHAR</text>
+  <line x1="30" y1="513" x2="210" y2="513" stroke="#fed7aa" stroke-width="0.5"></line>
+  <text x="42" y="527" fill="#7c2d12" font-size="11">saleDate</text><text x="140" y="527" fill="#6b7280" font-size="10">DATETIME</text>
+  <line x1="30" y1="534" x2="210" y2="534" stroke="#fed7aa" stroke-width="0.5"></line>
+  <text x="42" y="550" fill="#7c2d12" font-size="11">createdAt</text><text x="140" y="550" fill="#6b7280" font-size="10">DATETIME</text>
+
+  <!-- SALEITEMS TABLE -->
+  <rect x="470" y="340" width="180" height="213" rx="8" fill="#FDF4FF" stroke="#9333EA" stroke-width="1.5"></rect>
+  <rect x="470" y="340" width="180" height="36" rx="8" fill="#9333EA"></rect>
+  <rect x="470" y="364" width="180" height="12" fill="#9333EA"></rect>
+  <text x="560" y="363" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">SaleItems</text>
+  <line x1="470" y1="376" x2="650" y2="376" stroke="#9333EA" stroke-width="1"></line>
+  <text x="482" y="392" fill="#3b0764" font-size="11" font-weight="600">id</text><text x="580" y="392" fill="#9333ea" font-size="10">INT PK</text>
+  <line x1="470" y1="399" x2="650" y2="399" stroke="#e9d5ff" stroke-width="0.5"></line>
+  <text x="482" y="413" fill="#3b0764" font-size="11" font-weight="600">saleId</text><text x="580" y="413" fill="#9333ea" font-size="10">INT FK</text>
+  <line x1="470" y1="420" x2="650" y2="420" stroke="#e9d5ff" stroke-width="0.5"></line>
+  <text x="482" y="434" fill="#3b0764" font-size="11" font-weight="600">productId</text><text x="580" y="434" fill="#9333ea" font-size="10">INT FK</text>
+  <line x1="470" y1="441" x2="650" y2="441" stroke="#e9d5ff" stroke-width="0.5"></line>
+  <text x="482" y="455" fill="#3b0764" font-size="11">quantity</text><text x="580" y="455" fill="#6b7280" font-size="10">INT</text>
+  <line x1="470" y1="462" x2="650" y2="462" stroke="#e9d5ff" stroke-width="0.5"></line>
+  <text x="482" y="476" fill="#3b0764" font-size="11">unitPrice</text><text x="580" y="476" fill="#6b7280" font-size="10">DECIMAL</text>
+  <line x1="470" y1="483" x2="650" y2="483" stroke="#e9d5ff" stroke-width="0.5"></line>
+  <text x="482" y="497" fill="#3b0764" font-size="11">subtotal</text><text x="580" y="497" fill="#6b7280" font-size="10">DECIMAL</text>
+
+  <!-- RELATIONSHIP: Users -> Sales (1 to many) -->
+  <!-- vertical line down from Users -->
+  <line x1="120" y1="264" x2="120" y2="350" stroke="#4F46E5" stroke-width="1.5" stroke-dasharray="5,3"></line>
+  <line x1="120" y1="350" x2="120" y2="370" stroke="#4F46E5" stroke-width="1.5"></line>
+  <!-- crow foot at Sales end -->
+  <line x1="108" y1="358" x2="120" y2="370" stroke="#4F46E5" stroke-width="1.5"></line>
+  <line x1="132" y1="358" x2="120" y2="370" stroke="#4F46E5" stroke-width="1.5"></line>
+  <line x1="108" y1="352" x2="120" y2="364" stroke="#4F46E5" stroke-width="1.5"></line>
+  <rect x="86" y="305" width="68" height="18" rx="4" fill="#EEF2FF"></rect>
+  <text x="120" y="318" text-anchor="middle" fill="#4F46E5" font-size="10" font-weight="600">1 to many</text>
+
+  <!-- RELATIONSHIP: Sales -> SaleItems -->
+  <line x1="210" y1="447" x2="360" y2="447" stroke="#EA580C" stroke-width="1.5" stroke-dasharray="5,3"></line>
+  <line x1="360" y1="405" x2="360" y2="447" stroke="#EA580C" stroke-width="1.5" stroke-dasharray="5,3"></line>
+  <line x1="360" y1="405" x2="470" y2="405" stroke="#EA580C" stroke-width="1.5"></line>
+  <!-- crow foot -->
+  <line x1="458" y1="394" x2="470" y2="405" stroke="#EA580C" stroke-width="1.5"></line>
+  <line x1="458" y1="416" x2="470" y2="405" stroke="#EA580C" stroke-width="1.5"></line>
+  <line x1="452" y1="396" x2="464" y2="407" stroke="#EA580C" stroke-width="1.5"></line>
+  <rect x="296" y="388" width="68" height="18" rx="4" fill="#FFF7ED"></rect>
+  <text x="330" y="401" text-anchor="middle" fill="#EA580C" font-size="10" font-weight="600">1 to many</text>
+
+  <!-- RELATIONSHIP: Products -> SaleItems -->
+  <line x1="560" y1="243" x2="560" y2="310" stroke="#16A34A" stroke-width="1.5" stroke-dasharray="5,3"></line>
+  <line x1="560" y1="310" x2="560" y2="340" stroke="#16A34A" stroke-width="1.5"></line>
+  <!-- crow foot -->
+  <line x1="548" y1="328" x2="560" y2="340" stroke="#16A34A" stroke-width="1.5"></line>
+  <line x1="572" y1="328" x2="560" y2="340" stroke="#16A34A" stroke-width="1.5"></line>
+  <line x1="548" y1="322" x2="560" y2="334" stroke="#16A34A" stroke-width="1.5"></line>
+  <rect x="526" y="275" width="68" height="18" rx="4" fill="#F0FDF4"></rect>
+  <text x="560" y="288" text-anchor="middle" fill="#16A34A" font-size="10" font-weight="600">1 to many</text>
+
+</svg>
+</div>
+</body></html>

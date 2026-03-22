@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StatioPoint — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{min-height:100vh;background:#0A0C10;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;color:#F0F2F8;}
+body::before{content:'';position:fixed;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(245,200,66,0.07),transparent 65%);pointer-events:none;}
+
+.card{width:420px;background:#111318;border:1px solid #252A35;border-radius:20px;padding:40px;box-shadow:0 40px 80px rgba(0,0,0,0.6);}
+
+/* logo */
+.logo-row{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+.logo-box{width:42px;height:42px;background:#F5C842;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.5px;}
+.logo-text span{color:#F5C842;}
+
+h2{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;}
+.sub{font-size:12px;color:#A0A8B8;margin-bottom:26px;line-height:1.7;}
+
+/* role chips */
+.role-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#A0A8B8;margin-bottom:8px;}
+.role-row{display:flex;gap:10px;margin-bottom:22px;}
+.role-chip{flex:1;padding:9px;border-radius:8px;border:1px solid #252A35;background:none;color:#A0A8B8;font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;transition:all .15s;text-align:center;}
+.role-chip.active{background:rgba(245,200,66,0.1);border-color:#F5C842;color:#F5C842;}
+
+/* form */
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#A0A8B8;margin-bottom:6px;}
+.field-wrap{position:relative;}
+.field-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;color:#A0A8B8;}
+input{width:100%;background:#181C24;border:1px solid #252A35;border-radius:8px;padding:11px 14px 11px 38px;font-family:'DM Mono',monospace;font-size:13px;color:#F0F2F8;outline:none;transition:border-color .15s;}
+input:focus{border-color:#F5C842;}
+input::placeholder{color:#A0A8B8;}
+
+.forgot{font-size:11px;color:#A0A8B8;text-align:right;cursor:pointer;margin-top:4px;}
+.forgot:hover{color:#F5C842;}
+.divider{height:1px;background:#252A35;margin:14px 0;}
+.btn-login{width:100%;height:46px;background:#F5C842;border:none;border-radius:8px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#0A0C10;cursor:pointer;transition:background .15s;letter-spacing:.5px;}
+.btn-login:hover{background:#ffd000;}
+.btn-login:disabled{opacity:.6;cursor:not-allowed;}
+.footer{margin-top:20px;text-align:center;font-size:11px;color:#A0A8B8;}
+
+/* error */
+.error-msg{background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);color:#FF4D6D;border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:14px;display:none;}
+</style>
+</head>
+<body>
+<div class="card">
+  <!-- Logo -->
+  <div class="logo-row">
+    <div class="logo-box">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="5" width="10" height="2" rx="1" fill="#0A0C10"/>
+        <rect x="3" y="9" width="15" height="2" rx="1" fill="#0A0C10"/>
+        <rect x="3" y="13" width="7" height="2" rx="1" fill="#0A0C10"/>
+        <circle cx="17" cy="17" r="4" fill="#0A0C10"/>
+        <rect x="16.2" y="14.5" width="1.6" height="3" rx=".8" fill="#F5C842"/>
+        <rect x="15" y="16.2" width="4" height="1.6" rx=".8" fill="#F5C842"/>
+      </svg>
+    </div>
+    <div class="logo-text">Statio<span>Point</span></div>
+  </div>
+
+  <h2>Welcome back 👋</h2>
+  <p class="sub">Sign in to access your POS dashboard.</p>
+
+  <!-- Role selector -->
+  <div class="role-label">Login as</div>
+  <div class="role-row">
+    <button class="role-chip active" id="chip-cashier" onclick="selectRole('cashier')">🧾 Cashier</button>
+    <button class="role-chip"        id="chip-admin"   onclick="selectRole('admin')">🛡️ Admin</button>
+  </div>
+
+  <!-- Error message -->
+  <div class="error-msg" id="error-msg"></div>
+
+  <!-- Form -->
+  <div class="field">
+    <label>Username</label>
+    <div class="field-wrap">
+      <span class="field-icon">👤</span>
+      <input id="username" type="text" placeholder="Enter your username" autocomplete="username"/>
+    </div>
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <div class="field-wrap">
+      <span class="field-icon">🔒</span>
+      <input id="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
+    </div>
+    <div class="forgot">Forgot password?</div>
+  </div>
+
+  <div class="divider"></div>
+  <button class="btn-login" id="login-btn" onclick="handleLogin()">Sign In →</button>
+  <div class="footer">
+    StatioPoint v1.0 · Stationery POS System
+    <br><br>
+    Don't have an account? <a href="/signup" style="color:#F5C842;text-decoration:none;">Sign Up</a>
+  </div>
+</div>
+
+<script>
+const API = '/api';
+let selectedRole = 'cashier';
+
+function selectRole(role) {
+  selectedRole = role;
+  document.getElementById('chip-cashier').classList.toggle('active', role === 'cashier');
+  document.getElementById('chip-admin').classList.toggle('active',   role === 'admin');
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+async function handleLogin() {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+  document.getElementById('error-msg').style.display = 'none';
+
+  if (!username || !password) { showError('Please enter username and password.'); return; }
+
+  const btn = document.getElementById('login-btn');
+  btn.textContent = 'Signing in...';
+  btn.disabled = true;
+
+  try {
+    const res  = await fetch(`${API}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      // Check role matches selected chip
+      if (data.user.role !== selectedRole) {
+        showError(`This account is a ${data.user.role} account. Please select the correct role.`);
+        btn.textContent = 'Sign In →'; btn.disabled = false; return;
+      }
+      localStorage.setItem('sp_token', data.token);
+      localStorage.setItem('sp_user',  JSON.stringify(data.user));
+      // Redirect based on role
+      window.location.href = data.user.role === 'admin' ? '/admin' : '/cashier';
+    } else {
+      showError(data.message || 'Login failed.');
+      btn.textContent = 'Sign In →'; btn.disabled = false;
+    }
+  } catch {
+    showError('Cannot connect to server. Make sure backend is running.');
+    btn.textContent = 'Sign In →'; btn.disabled = false;
+  }
+}
+
+// Allow Enter key
+document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+
+// If already logged in redirect
+const token = localStorage.getItem('sp_token');
+const user  = JSON.parse(localStorage.getItem('sp_user') || '{}');
+if (token && user.role) window.location.href = user.role === 'admin' ? '/admin' : '/cashier';
+</script>
+</body>
+</html>
