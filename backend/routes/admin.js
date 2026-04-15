@@ -65,7 +65,7 @@ router.get('/users', async (req, res) => {
     const pool   = getPool();
     const result = await pool.request().query(`
       SELECT id,fullName,username,email,phone,role,branch,isActive,createdAt
-      FROM Users ORDER BY createdAt DESC`);
+      FROM Users WHERE isActive=1 ORDER BY createdAt DESC`);
     res.json({ success: true, data: result.recordset });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Server error' });

@@ -110,6 +110,9 @@ INSERT INTO SaleItems (saleId,productId,quantity,unitPrice,subtotal) VALUES
 (5,9, 4, 80.00, 320.00);
 GO
 
-PRINT '✅ StatioPoint DB ready!';
-PRINT 'Admin login   → username: ahmed.khan  password: admin123';
-PRINT 'Cashier login → username: sara.ahmed  password: cashier123';
+SELECT * FROM Products;
+
+SELECT id, name, stock FROM Products;
+
+Select * from Users;
+select * from Sales;

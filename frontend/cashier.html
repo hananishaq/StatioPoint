@@ -6,7 +6,7 @@
 <title>StatioPoint — Cashier Panel</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0A0C10;--card:#111318;--el:#181C24;--border:#252A35;--gold:#F5C842;--teal:#2DD4BF;--red:#FF4D6D;--green:#22C55E;--txt:#F0F2F8;--txt2:#8B93A8;--txt3:#454D60;}
+:root{--bg:#0A0C10;--card:#111318;--el:#181C24;--border:#252A35;--gold:#F5C842;--teal:#2DD4BF;--red:#FF4D6D;--green:#22C55E;--txt:#FFFFFF;--txt2:#D0D6E8;--txt3:#8B93A8;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--txt);display:flex;min-height:100vh;}
 
@@ -282,7 +282,7 @@ function nav(screen, btn) {
 let allProducts = [], cart = [], activeCategory = '', paymentType = 'cash';
 
 async function loadProducts() {
-  const data = await api('/cashier/products');
+  const data = await api('/products');
   if (!data.success) return;
   allProducts = data.data;
   renderProducts(allProducts);
@@ -387,7 +387,7 @@ async function processSale() {
   const btn = document.getElementById('checkout-btn');
   btn.textContent='Processing…'; btn.disabled=true;
 
-  const data = await api('/cashier/sale','POST',{ items:cart, paymentType });
+  const data = await api('/sales','POST',{ items:cart, paymentType });
 
   if (data.success) {
     toast(`✅ Sale complete! Total: Rs ${data.totalAmount.toLocaleString()}`);

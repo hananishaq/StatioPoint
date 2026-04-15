@@ -6,7 +6,7 @@
 <title>StatioPoint — Admin Panel</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0A0C10;--card:#111318;--el:#181C24;--border:#252A35;--gold:#F5C842;--teal:#2DD4BF;--red:#FF4D6D;--green:#22C55E;--txt:#F0F2F8;--txt2:#8B93A8;--txt3:#454D60;}
+:root{--bg:#0A0C10;--card:#111318;--el:#181C24;--border:#252A35;--gold:#F5C842;--teal:#2DD4BF;--red:#FF4D6D;--green:#22C55E;--txt:#FFFFFF;--txt2:#D0D6E8;--txt3:#8B93A8;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--txt);display:flex;min-height:100vh;}
 
@@ -128,6 +128,8 @@ input[readonly]{color:var(--txt3);cursor:not-allowed;}
   <div class="sb-div"></div>
   <button class="nav-item active" onclick="nav('dashboard')" title="Dashboard">🏠</button>
   <button class="nav-item"        onclick="nav('users')"     title="Manage Users">👥</button>
+  <button class="nav-item"        onclick="nav('inventory')" title="Inventory">📦</button>
+  <button class="nav-item"        onclick="nav('sales')"     title="Sales History">🧾</button>
   <button class="nav-item"        onclick="nav('reports')"   title="Reports">📊</button>
   <div class="sb-div nav-bottom"></div>
   <button class="nav-item"        onclick="nav('profile')"   title="My Profile">👤</button>
@@ -199,6 +201,35 @@ input[readonly]{color:var(--txt3);cursor:not-allowed;}
           <span>Full Name</span><span>Email</span><span>Role</span><span>Branch</span><span>Status</span><span>Action</span>
         </div>
         <div id="users-body"></div>
+      </div>
+    </div>
+
+    <!-- ── INVENTORY SCREEN ────────────────────── -->
+    <div class="screen" id="scr-inventory">
+      <div style="display:flex;align-items:center;margin-bottom:20px;">
+        <div class="sec-title" style="margin:0">Inventory Management</div>
+        <div class="topbar-space"></div>
+        <button class="btn btn-gold" onclick="openAddProduct()">+ Add Product</button>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-head" style="grid-template-columns:2fr 1fr 1fr 1fr 80px 80px 100px;">
+          <span>Name</span><span>SKU</span><span>Category</span><span>Price</span><span>Stock</span><span>Min</span><span>Action</span>
+        </div>
+        <div id="inventory-body"><div style="padding:20px;color:var(--txt3);font-size:12px;">Loading…</div></div>
+      </div>
+    </div>
+
+    <!-- ── SALES HISTORY SCREEN ────────────────────── -->
+    <div class="screen" id="scr-sales">
+      <div style="display:flex;align-items:center;margin-bottom:20px;">
+        <div class="sec-title" style="margin:0">Sales History</div>
+        <div class="topbar-space"></div>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-head" style="grid-template-columns:1fr 2fr 1fr 1fr 1fr 1fr;">
+          <span>Sale ID</span><span>Cashier</span><span>Amount</span><span>Payment</span><span>Status</span><span>Date</span>
+        </div>
+        <div id="sales-body"><div style="padding:20px;color:var(--txt3);font-size:12px;">Loading…</div></div>
       </div>
     </div>
 
@@ -296,6 +327,26 @@ input[readonly]{color:var(--txt3);cursor:not-allowed;}
   </div>
 </div>
 
+<!-- ADD/EDIT PRODUCT MODAL -->
+<div class="modal-bg" id="product-modal">
+  <div class="modal">
+    <div class="modal-title" id="pm-title">📦 Add New Product</div>
+    <input type="hidden" id="pm-id" />
+    <div class="grid2">
+      <div class="field"><label>Product Name</label><input id="pm-name" placeholder="e.g. Blue Pen"/></div>
+      <div class="field"><label>SKU</label><input id="pm-sku" placeholder="e.g. PN-BLU-01"/></div>
+      <div class="field"><label>Category</label><input id="pm-cat" placeholder="e.g. Pens"/></div>
+      <div class="field"><label>Price (Rs)</label><input id="pm-price" type="number" placeholder="150" min="0"/></div>
+      <div class="field"><label>Current Stock</label><input id="pm-stock" type="number" placeholder="100" min="0"/></div>
+      <div class="field"><label>Min Stock</label><input id="pm-min" type="number" placeholder="20" min="0"/></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:4px;">
+      <button class="btn btn-gold"    onclick="saveProduct()">Save Product</button>
+      <button class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div id="toast"></div>
 
@@ -329,7 +380,7 @@ const toast = (msg, type='success') => {
 };
 
 // ── Navigation ───────────────────────────────────
-const titles = { dashboard:['Dashboard','ADMIN OVERVIEW'], users:['Manage Users','USER MANAGEMENT'], reports:['Reports & Analytics','SALES PERFORMANCE'], profile:['My Profile','ACCOUNT SETTINGS'] };
+const titles = { dashboard:['Dashboard','ADMIN OVERVIEW'], users:['Manage Users','USER MANAGEMENT'], inventory:['Inventory','PRODUCT MANAGEMENT'], sales:['Sales History','ALL TRANSACTIONS'], reports:['Reports & Analytics','SALES PERFORMANCE'], profile:['My Profile','ACCOUNT SETTINGS'] };
 
 function nav(screen) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -341,6 +392,8 @@ function nav(screen) {
   document.getElementById('page-sub').textContent   = s;
   if (screen==='dashboard') loadDashboard();
   if (screen==='users')     loadUsers();
+  if (screen==='inventory') loadInventory();
+  if (screen==='sales')     loadSales();
   if (screen==='reports')   loadReports('monthly');
   if (screen==='profile')   loadProfile();
 }
@@ -415,6 +468,75 @@ async function deleteUser(id) {
   const data = await api(`/admin/users/${id}`,'DELETE');
   toast(data.message, data.success?'success':'error');
   if (data.success) loadUsers();
+}
+
+// ── INVENTORY ─────────────────────────────────────
+let allProducts = [];
+async function loadInventory() {
+  const data = await api('/products');
+  if (!data.success) return;
+  allProducts = data.data;
+  document.getElementById('inventory-body').innerHTML = allProducts.map(p => `
+    <div class="tbl-row" style="grid-template-columns:2fr 1fr 1fr 1fr 80px 80px 100px; ${p.stock < p.minStock ? 'color: var(--red);' : ''}">
+      <span class="name">${p.name}</span>
+      <span>${p.sku || '—'}</span>
+      <span>${p.category}</span>
+      <span style="color:var(--gold)">Rs ${Number(p.price).toLocaleString()}</span>
+      <span style="font-weight:bold">${p.stock}</span>
+      <span>${p.minStock}</span>
+      <span style="display:flex;gap:4px;">
+        <button class="btn btn-outline btn-sm" onclick="editProduct(${p.id})">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="delProduct(${p.id})">Del</button>
+      </span>
+    </div>`).join('');
+}
+
+function openAddProduct() {
+  sv('pm-id', ''); sv('pm-name', ''); sv('pm-sku', ''); sv('pm-cat', ''); sv('pm-price', ''); sv('pm-stock', ''); sv('pm-min', '');
+  document.getElementById('pm-title').textContent = '📦 Add New Product';
+  document.getElementById('product-modal').classList.add('show');
+}
+function closeProductModal() { document.getElementById('product-modal').classList.remove('show'); }
+
+function editProduct(id) {
+  const p = allProducts.find(x => x.id === id);
+  if (!p) return;
+  sv('pm-id', p.id); sv('pm-name', p.name); sv('pm-sku', p.sku); sv('pm-cat', p.category); 
+  sv('pm-price', p.price); sv('pm-stock', p.stock); sv('pm-min', p.minStock);
+  document.getElementById('pm-title').textContent = '✏️ Edit Product';
+  document.getElementById('product-modal').classList.add('show');
+}
+
+async function saveProduct() {
+  const body = { name: gv('pm-name'), sku: gv('pm-sku'), category: gv('pm-cat'), price: Number(gv('pm-price')), stock: Number(gv('pm-stock')), minStock: Number(gv('pm-min')) };
+  const id = gv('pm-id');
+  const endpoint = id ? `/products/${id}` : '/products';
+  const method = id ? 'PUT' : 'POST';
+  const data = await api(endpoint, method, body);
+  toast(data.message, data.success ? 'success' : 'error');
+  if (data.success) { closeProductModal(); loadInventory(); }
+}
+
+async function delProduct(id) {
+  if (!confirm('Are you sure you want to delete this product?')) return;
+  const data = await api(`/products/${id}`, 'DELETE');
+  toast(data.message, data.success ? 'success' : 'error');
+  if (data.success) loadInventory();
+}
+
+// ── SALES ─────────────────────────────────────────
+async function loadSales() {
+  const data = await api('/sales');
+  if (!data.success) return;
+  document.getElementById('sales-body').innerHTML = data.data.map(s => `
+    <div class="tbl-row" style="grid-template-columns:1fr 2fr 1fr 1fr 1fr 1fr;">
+      <span>#${s.saleId}</span>
+      <span class="name">${s.cashierName}</span>
+      <span style="color:var(--gold)">Rs ${Number(s.totalAmount).toLocaleString()}</span>
+      <span><span class="badge badge-gray">${s.paymentType}</span></span>
+      <span><span class="badge badge-green">✓ Paid</span></span>
+      <span>${new Date(s.saleDate).toLocaleDateString()}</span>
+    </div>`).join('');
 }
 
 // ── REPORTS ──────────────────────────────────────

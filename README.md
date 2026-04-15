@@ -104,3 +104,17 @@ Create a `.env` file in the `backend/` directory. See `.env.example` for the req
 
 - All API keys and passwords must be stored in `.env` only — never hardcoded.
 - The `.env` file is listed in `.gitignore` and will not be uploaded to GitHub.
+
+## Iteration 2 / Sprint 2
+
+### Features Implemented:
+- Inventory Management (Add/Edit/Delete Products)
+- Low Stock Alerts
+- Sales / Billing System
+- Checkout with Cash/Card
+- Sales History Tracking
+
+### Tech Stack:
+- Frontend: HTML, CSS, JS
+- Backend: Node.js (Express)
+- Database: SQL Server
