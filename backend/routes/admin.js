@@ -34,12 +34,9 @@ router.get('/dashboard', async (req, res) => {
       GROUP BY CAST(saleDate AS DATE) ORDER BY day ASC`);
 
     const recentTxn = await pool.request().query(`
-      SELECT TOP 5 p.name AS productName, p.category, si.quantity,
-        s.totalAmount, s.status, s.paymentType, s.saleDate, u.fullName AS cashierName
+      SELECT TOP 5 s.id as saleId, s.totalAmount, s.status, s.paymentType, s.saleDate, u.fullName AS cashierName
       FROM Sales s
-      JOIN SaleItems si ON s.id=si.saleId
-      JOIN Products p   ON si.productId=p.id
-      JOIN Users u      ON s.userId=u.id
+      JOIN Users u ON s.userId=u.id
       ORDER BY s.saleDate DESC`);
 
     res.json({
@@ -130,7 +127,7 @@ router.get('/reports', async (req, res) => {
 
     const summary = await pool.request().query(`
       SELECT ISNULL(SUM(totalAmount),0) AS totalRevenue, COUNT(*) AS totalTxn
-      FROM Sales WHERE saleDate>=${fromDate}`);
+      FROM Sales WHERE saleDate>=${fromDate} AND status='paid'`);
 
     const topProducts = await pool.request().query(`
       SELECT TOP 5 p.name, SUM(si.quantity) AS unitsSold,
@@ -141,7 +138,7 @@ router.get('/reports', async (req, res) => {
 
     const barChart = await pool.request().query(`
       SELECT CAST(saleDate AS DATE) AS day, ISNULL(SUM(totalAmount),0) AS revenue
-      FROM Sales WHERE saleDate>=DATEADD(day,-9,CAST(GETDATE() AS DATE))
+      FROM Sales WHERE saleDate>=DATEADD(day,-9,CAST(GETDATE() AS DATE)) AND status='paid'
       GROUP BY CAST(saleDate AS DATE) ORDER BY day ASC`);
 
     const lowStock = await pool.request().query(`

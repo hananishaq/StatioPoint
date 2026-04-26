@@ -4,62 +4,98 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StatioPoint — Login</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{min-height:100vh;background:#0A0C10;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;color:#F0F2F8;}
-body::before{content:'';position:fixed;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(245,200,66,0.07),transparent 65%);pointer-events:none;}
+body{min-height:100vh;background:#1E293B;display:flex;align-items:center;justify-content:center;font-family:'Inter', sans-serif;color:#F8FAFC;}
+body::before{content:'';position:fixed;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(96,165,250,0.1),transparent 65%);pointer-events:none;}
 
-.card{width:420px;background:#111318;border:1px solid #252A35;border-radius:20px;padding:40px;box-shadow:0 40px 80px rgba(0,0,0,0.6);}
+.card{width:800px;max-width:90%;background:#334155;border:1px solid #475569;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,0.25);display:flex;overflow:hidden;}
+.card-left{flex:1;background:linear-gradient(135deg, #0F172A, #1E3A8A);padding:40px;color:#FFF;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.card-right{flex:1;padding:40px;background:#334155;}
 
 /* logo */
 .logo-row{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
-.logo-box{width:42px;height:42px;background:#F5C842;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.5px;}
-.logo-text span{color:#F5C842;}
+.logo-box{width:42px;height:42px;background:#60A5FA;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-text{font-family:'Outfit', sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.5px;}
+.logo-text span{color:#60A5FA;}
 
-h2{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;}
-.sub{font-size:12px;color:#A0A8B8;margin-bottom:26px;line-height:1.7;}
+h2{font-family:'Outfit', sans-serif;font-weight:800;font-size:26px;margin-bottom:6px;}
+.sub{font-size:14px;color:#CBD5E1;margin-bottom:26px;line-height:1.7;font-weight:500;}
 
 /* role chips */
-.role-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#A0A8B8;margin-bottom:8px;}
+.role-label{font-size:12px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:#94A3B8;margin-bottom:8px;}
 .role-row{display:flex;gap:10px;margin-bottom:22px;}
-.role-chip{flex:1;padding:9px;border-radius:8px;border:1px solid #252A35;background:none;color:#A0A8B8;font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;transition:all .15s;text-align:center;}
-.role-chip.active{background:rgba(245,200,66,0.1);border-color:#F5C842;color:#F5C842;}
+.role-chip{flex:1;padding:12px;border-radius:8px;border:1px solid #475569;background:none;color:#94A3B8;font-family:'Inter', sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;}
+.role-chip.active{background:rgba(96,165,250,0.1);border-color:#60A5FA;color:#60A5FA;}
 
 /* form */
-.field{margin-bottom:14px;}
-.field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#A0A8B8;margin-bottom:6px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#64748B;margin-bottom:8px;}
 .field-wrap{position:relative;}
-.field-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;color:#A0A8B8;}
-input{width:100%;background:#181C24;border:1px solid #252A35;border-radius:8px;padding:11px 14px 11px 38px;font-family:'DM Mono',monospace;font-size:13px;color:#F0F2F8;outline:none;transition:border-color .15s;}
-input:focus{border-color:#F5C842;}
-input::placeholder{color:#A0A8B8;}
+.field-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:16px;color:#64748B;}
+input{width:100%;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:8px;padding:14px 16px 14px 44px;font-family:'Inter', sans-serif;font-size:15px;font-weight:500;color:#0F172A;outline:none;transition:border-color .15s;}
+input:focus{border-color:#3B82F6;}
+input::placeholder{color:#64748B;}
 
-.forgot{font-size:11px;color:#A0A8B8;text-align:right;cursor:pointer;margin-top:4px;}
-.forgot:hover{color:#F5C842;}
-.divider{height:1px;background:#252A35;margin:14px 0;}
-.btn-login{width:100%;height:46px;background:#F5C842;border:none;border-radius:8px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#0A0C10;cursor:pointer;transition:background .15s;letter-spacing:.5px;}
-.btn-login:hover{background:#ffd000;}
+.forgot{font-size:13px;font-weight:600;color:#64748B;text-align:right;cursor:pointer;margin-top:6px;}
+.forgot:hover{color:#3B82F6;}
+.divider{height:1px;background:#E2E8F0;margin:18px 0;}
+.btn-login{width:100%;height:52px;background:#3B82F6;border:none;border-radius:8px;font-family:'Inter', sans-serif;font-size:16px;font-weight:700;color:#FFFFFF;cursor:pointer;transition:background .15s;letter-spacing:.5px;}
+.btn-login:hover{background:#2563EB;}
 .btn-login:disabled{opacity:.6;cursor:not-allowed;}
-.footer{margin-top:20px;text-align:center;font-size:11px;color:#A0A8B8;}
+.footer{margin-top:24px;text-align:center;font-size:13px;color:#64748B;}
 
 /* error */
-.error-msg{background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);color:#FF4D6D;border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:14px;display:none;}
+.error-msg{background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);color:#FF4D6D;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:500;margin-bottom:16px;display:none;}
+
+/* Light Theme */
+body.light-theme { background: #F8FAFC; color: #0F172A; }
+body.light-theme::before { background: radial-gradient(ellipse, rgba(59,130,246,0.15), transparent 65%); }
+body.light-theme .card { background: #FFFFFF; border-color: #E2E8F0; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+body.light-theme .card-left { background: linear-gradient(135deg, #2563EB, #1E3A8A); }
+body.light-theme .card-right { background: #FFFFFF; }
+body.light-theme .sub { color: #64748B; }
+body.light-theme .role-label, body.light-theme .field label { color: #64748B; }
+body.light-theme .role-chip { border-color: #CBD5E1; color: #64748B; }
+body.light-theme .role-chip.active { background: rgba(59,130,246,0.1); border-color: #3B82F6; color: #3B82F6; }
+
+/* Theme Toggle */
+.card-right { position: relative; }
+.theme-toggle { position: absolute; top: 32px; right: 40px; background: none; border: none; font-size: 22px; cursor: pointer; color: #94A3B8; transition: all 0.2s ease; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.theme-toggle:hover { color: #3B82F6; background: rgba(59,130,246,0.1); transform: scale(1.05); }
 </style>
 </head>
 <body>
 <div class="card">
+  <div class="card-left">
+    <div style="background:rgba(255,255,255,0.2);padding:16px;border-radius:16px;margin-bottom:24px;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="5" width="10" height="2" rx="1" fill="#FFFFFF"/>
+        <rect x="3" y="9" width="15" height="2" rx="1" fill="#FFFFFF"/>
+        <rect x="3" y="13" width="7" height="2" rx="1" fill="#FFFFFF"/>
+        <circle cx="17" cy="17" r="4" fill="#FFFFFF"/>
+      </svg>
+    </div>
+    <div style="font-family:'Outfit', sans-serif;font-size:34px;font-weight:800;margin-bottom:12px;">StatioPoint POS</div>
+    <p style="font-size:16px;opacity:0.9;line-height:1.6;font-weight:500;">Powering your Inventory management and Sales operations securely.</p>
+  </div>
+  <div class="card-right">
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle Light/Dark Theme">
+    ☀️
+  </button>
+  
   <!-- Logo -->
   <div class="logo-row">
     <div class="logo-box">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="5" width="10" height="2" rx="1" fill="#0A0C10"/>
-        <rect x="3" y="9" width="15" height="2" rx="1" fill="#0A0C10"/>
-        <rect x="3" y="13" width="7" height="2" rx="1" fill="#0A0C10"/>
-        <circle cx="17" cy="17" r="4" fill="#0A0C10"/>
-        <rect x="16.2" y="14.5" width="1.6" height="3" rx=".8" fill="#F5C842"/>
-        <rect x="15" y="16.2" width="4" height="1.6" rx=".8" fill="#F5C842"/>
+        <rect x="3" y="5" width="10" height="2" rx="1" fill="#FFFFFF"/>
+        <rect x="3" y="9" width="15" height="2" rx="1" fill="#FFFFFF"/>
+        <rect x="3" y="13" width="7" height="2" rx="1" fill="#FFFFFF"/>
+        <circle cx="17" cy="17" r="4" fill="#FFFFFF"/>
+        <rect x="16.2" y="14.5" width="1.6" height="3" rx=".8" fill="#3B82F6"/>
+        <rect x="15" y="16.2" width="4" height="1.6" rx=".8" fill="#3B82F6"/>
       </svg>
     </div>
     <div class="logo-text">Statio<span>Point</span></div>
@@ -100,13 +136,39 @@ input::placeholder{color:#A0A8B8;}
   <div class="footer">
     StatioPoint v1.0 · Stationery POS System
     <br><br>
-    Don't have an account? <a href="/signup" style="color:#F5C842;text-decoration:none;">Sign Up</a>
+    Don't have an account? <a href="/signup" style="color:#3B82F6;text-decoration:none;">Sign Up</a>
+  </div>
   </div>
 </div>
 
 <script>
 const API = '/api';
 let selectedRole = 'cashier';
+
+// Theme Logic
+const themeToggleBtn = document.getElementById('theme-toggle');
+let isLight = localStorage.getItem('sp_theme') === 'light';
+
+function applyTheme() {
+  if (isLight) {
+    document.body.classList.add('light-theme');
+    themeToggleBtn.textContent = '🌙';
+    themeToggleBtn.title = "Switch to Dark Theme";
+  } else {
+    document.body.classList.remove('light-theme');
+    themeToggleBtn.textContent = '☀️';
+    themeToggleBtn.title = "Switch to Light Theme";
+  }
+}
+
+function toggleTheme() {
+  isLight = !isLight;
+  localStorage.setItem('sp_theme', isLight ? 'light' : 'dark');
+  applyTheme();
+}
+
+// Apply on load
+applyTheme();
 
 function selectRole(role) {
   selectedRole = role;

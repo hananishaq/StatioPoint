@@ -4,63 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StatioPoint — Sign Up</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{min-height:100vh;background:#0A0C10;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;color:#F0F2F8;}
-body::before{content:'';position:fixed;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(245,200,66,0.07),transparent 65%);pointer-events:none;}
+body{min-height:100vh;background:#1E293B;display:flex;align-items:center;justify-content:center;font-family:'Inter', sans-serif;color:#F8FAFC;}
+body::before{content:'';position:fixed;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(96,165,250,0.1),transparent 65%);pointer-events:none;}
 
-.card{width:420px;background:#111318;border:1px solid #252A35;border-radius:20px;padding:40px;box-shadow:0 40px 80px rgba(0,0,0,0.6);margin: 20px 0;}
+.card{width:800px;max-width:90%;background:#334155;border:1px solid #475569;border-radius:20px;padding:40px;box-shadow:0 20px 40px rgba(0,0,0,0.25);margin: 20px 0;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
 
 /* logo */
 .logo-row{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
-.logo-box{width:42px;height:42px;background:#F5C842;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.5px;}
-.logo-text span{color:#F5C842;}
+.logo-box{width:42px;height:42px;background:#60A5FA;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-text{font-family:'Outfit', sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.5px;}
+.logo-text span{color:#60A5FA;}
 
-h2{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;}
-.sub{font-size:12px;color:#A0A8B8;margin-bottom:26px;line-height:1.7;}
+h2{font-family:'Outfit', sans-serif;font-weight:800;font-size:26px;margin-bottom:6px;}
+.sub{font-size:14px;color:#CBD5E1;margin-bottom:26px;line-height:1.7;font-weight:500;}
 
 /* role chips */
-.role-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#A0A8B8;margin-bottom:8px;}
+.role-label{font-size:12px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:#94A3B8;margin-bottom:8px;}
 .role-row{display:flex;gap:10px;margin-bottom:22px;}
-.role-chip{flex:1;padding:9px;border-radius:8px;border:1px solid #252A35;background:none;color:#A0A8B8;font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;transition:all .15s;text-align:center;}
-.role-chip.active{background:rgba(245,200,66,0.1);border-color:#F5C842;color:#F5C842;}
+.role-chip{flex:1;padding:12px;border-radius:8px;border:1px solid #475569;background:none;color:#94A3B8;font-family:'Inter', sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;}
+.role-chip.active{background:rgba(96,165,250,0.1);border-color:#60A5FA;color:#60A5FA;}
 
 /* form */
-.field{margin-bottom:14px;}
-.field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#A0A8B8;margin-bottom:6px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#94A3B8;margin-bottom:8px;}
 .field-wrap{position:relative;}
-.field-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;color:#A0A8B8;}
-input{width:100%;background:#181C24;border:1px solid #252A35;border-radius:8px;padding:11px 14px 11px 38px;font-family:'DM Mono',monospace;font-size:13px;color:#F0F2F8;outline:none;transition:border-color .15s;}
-input:focus{border-color:#F5C842;}
-input::placeholder{color:#A0A8B8;}
+.field-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:16px;color:#94A3B8;}
+input, select{width:100%;background:#1E293B;border:1px solid #475569;border-radius:8px;padding:14px 16px 14px 44px;font-family:'Inter', sans-serif;font-size:15px;font-weight:500;color:#F8FAFC;outline:none;transition:border-color .15s;}
+input:focus, select:focus{border-color:#60A5FA;}
+input::placeholder{color:#64748B;}
+select{appearance:none;cursor:pointer;color:#F8FAFC;}
+select:valid{color:#F8FAFC;}
 
-.divider{height:1px;background:#252A35;margin:18px 0;}
-.btn-login{width:100%;height:46px;background:#F5C842;border:none;border-radius:8px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#0A0C10;cursor:pointer;transition:background .15s;letter-spacing:.5px;}
-.btn-login:hover{background:#ffd000;}
+.divider{height:1px;background:#475569;margin:18px 0;}
+.btn-login{width:100%;height:52px;background:#60A5FA;border:none;border-radius:8px;font-family:'Inter', sans-serif;font-size:16px;font-weight:700;color:#FFFFFF;cursor:pointer;transition:background .15s;letter-spacing:.5px;}
+.btn-login:hover{background:#3B82F6;}
 .btn-login:disabled{opacity:.6;cursor:not-allowed;}
-.footer{margin-top:20px;text-align:center;font-size:11px;color:#A0A8B8;}
+.footer{margin-top:24px;text-align:center;font-size:13px;color:#CBD5E1;}
 
 /* error / success */
-.error-msg{background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.3);color:#FF4D6D;border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:14px;display:none;}
-.success-msg{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#22C55E;border-radius:8px;padding:10px 14px;font-size:12px;margin-bottom:14px;display:none;}
-.link{color: #F5C842; text-decoration: none;}
+.error-msg{background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.3);color:#FB7185;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:500;margin-bottom:16px;display:none;}
+.success-msg{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ADE80;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:500;margin-bottom:16px;display:none;}
+.link{color: #60A5FA; text-decoration: none;}
 .link:hover{text-decoration: underline;}
+
+/* Light Theme */
+body.light-theme { background: #F8FAFC; color: #0F172A; }
+body.light-theme::before { background: radial-gradient(ellipse, rgba(59,130,246,0.15), transparent 65%); }
+body.light-theme .card { background: #FFFFFF; border-color: #E2E8F0; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+body.light-theme .sub { color: #64748B; }
+body.light-theme .role-label, body.light-theme .field label { color: #64748B; }
+body.light-theme .role-chip { border-color: #CBD5E1; color: #64748B; }
+body.light-theme .role-chip.active { background: rgba(59,130,246,0.1); border-color: #3B82F6; color: #3B82F6; }
+body.light-theme input, body.light-theme select { background: #F8FAFC; border-color: #E2E8F0; color: #0F172A; }
+body.light-theme input:focus, body.light-theme select:focus { border-color: #3B82F6; }
+body.light-theme select { color: #0F172A; }
+
+/* Theme Toggle */
+.theme-toggle { position: absolute; top: 32px; right: 40px; background: none; border: none; font-size: 22px; cursor: pointer; color: #94A3B8; transition: all 0.2s ease; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.theme-toggle:hover { color: #3B82F6; background: rgba(59,130,246,0.1); transform: scale(1.05); }
 </style>
 </head>
 <body>
-<div class="card">
+<div class="card" style="position: relative;">
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle Light/Dark Theme">
+    ☀️
+  </button>
+
   <!-- Logo -->
   <div class="logo-row">
     <div class="logo-box">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="5" width="10" height="2" rx="1" fill="#0A0C10"/>
-        <rect x="3" y="9" width="15" height="2" rx="1" fill="#0A0C10"/>
-        <rect x="3" y="13" width="7" height="2" rx="1" fill="#0A0C10"/>
-        <circle cx="17" cy="17" r="4" fill="#0A0C10"/>
-        <rect x="16.2" y="14.5" width="1.6" height="3" rx=".8" fill="#F5C842"/>
-        <rect x="15" y="16.2" width="4" height="1.6" rx=".8" fill="#F5C842"/>
+        <rect x="3" y="5" width="10" height="2" rx="1" fill="#FFFFFF"/>
+        <rect x="3" y="9" width="15" height="2" rx="1" fill="#FFFFFF"/>
+        <rect x="3" y="13" width="7" height="2" rx="1" fill="#FFFFFF"/>
+        <circle cx="17" cy="17" r="4" fill="#FFFFFF"/>
+        <rect x="16.2" y="14.5" width="1.6" height="3" rx=".8" fill="#3B82F6"/>
+        <rect x="15" y="16.2" width="4" height="1.6" rx=".8" fill="#3B82F6"/>
       </svg>
     </div>
     <div class="logo-text">Statio<span>Point</span></div>
@@ -80,19 +104,12 @@ input::placeholder{color:#A0A8B8;}
   <div class="success-msg" id="success-msg"></div>
 
   <!-- Form -->
+  <div class="form-grid">
   <div class="field">
     <label>Full Name</label>
     <div class="field-wrap">
       <span class="field-icon">📝</span>
       <input id="fullname" type="text" placeholder="e.g. Ali Khan"/>
-    </div>
-  </div>
-
-  <div class="field">
-    <label>Email</label>
-    <div class="field-wrap">
-      <span class="field-icon">✉️</span>
-      <input id="email" type="email" placeholder="e.g. ali@shop.pk"/>
     </div>
   </div>
 
@@ -105,15 +122,58 @@ input::placeholder{color:#A0A8B8;}
   </div>
 
   <div class="field">
+    <label>Email</label>
+    <div class="field-wrap">
+      <span class="field-icon">✉️</span>
+      <input id="email" type="email" placeholder="e.g. ali@shop.pk"/>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Phone</label>
+    <div class="field-wrap">
+      <span class="field-icon">📞</span>
+      <span style="position:absolute; left:44px; top:50%; transform:translateY(-50%); color:#3B82F6; font-weight:700; font-size:15px; pointer-events:none;">+92</span>
+      <input id="phone" type="text" placeholder="3000000000" maxlength="10" style="padding-left:82px;" oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Branch</label>
+    <div class="field-wrap">
+      <span class="field-icon">🏪</span>
+      <select id="branch" required>
+        <option value="" disabled selected>Select a branch</option>
+        <option value="Main Branch">Main Branch</option>
+        <option value="City Center Branch">City Center Branch</option>
+        <option value="Northside Branch">Northside Branch</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
     <label>Password</label>
     <div class="field-wrap">
       <span class="field-icon">🔒</span>
-      <input id="password" type="password" placeholder="••••••••"/>
+      <input id="password" type="password" placeholder="••••••••" oninput="checkPassword()"/>
+      <span class="field-icon" style="left:auto; right:16px; cursor:pointer; font-size:18px;" onclick="togglePassword('password', this)">👁️</span>
     </div>
+    <div id="pwd-strength" style="font-size:13px; font-weight:500; margin-top:8px; display:none; padding-left:2px;"></div>
+  </div>
+
+  <div class="field">
+    <label>Confirm Password</label>
+    <div class="field-wrap">
+      <span class="field-icon">🔑</span>
+      <input id="confirm_password" type="password" placeholder="••••••••"/>
+      <span class="field-icon" style="left:auto; right:16px; cursor:pointer; font-size:18px;" onclick="togglePassword('confirm_password', this)">👁️</span>
+    </div>
+  </div>
   </div>
 
   <div class="divider"></div>
   <button class="btn-login" id="signup-btn" onclick="handleSignup()">Sign Up →</button>
+
   <div class="footer">
     Already have an account? <a href="/" class="link">Log in here</a>
   </div>
@@ -122,6 +182,31 @@ input::placeholder{color:#A0A8B8;}
 <script>
 const API = '/api';
 let selectedRole = 'cashier';
+
+// Theme Logic
+const themeToggleBtn = document.getElementById('theme-toggle');
+let isLight = localStorage.getItem('sp_theme') === 'light';
+
+function applyTheme() {
+  if (isLight) {
+    document.body.classList.add('light-theme');
+    themeToggleBtn.textContent = '🌙';
+    themeToggleBtn.title = "Switch to Dark Theme";
+  } else {
+    document.body.classList.remove('light-theme');
+    themeToggleBtn.textContent = '☀️';
+    themeToggleBtn.title = "Switch to Light Theme";
+  }
+}
+
+function toggleTheme() {
+  isLight = !isLight;
+  localStorage.setItem('sp_theme', isLight ? 'light' : 'dark');
+  applyTheme();
+}
+
+// Apply on load
+applyTheme();
 
 function selectRole(role) {
   selectedRole = role;
@@ -145,31 +230,41 @@ async function handleSignup() {
   const fullName = document.getElementById('fullname').value.trim();
   const email    = document.getElementById('email').value.trim();
   const username = document.getElementById('username').value.trim();
+  let phone = document.getElementById('phone').value.trim();
+  const branch   = document.getElementById('branch').value.trim();
   const password = document.getElementById('password').value.trim();
+  const confirmPwd = document.getElementById('confirm_password').value.trim();
 
-  if (!fullName || !email || !username || !password) {
+  if (!fullName || !email || !username || !phone || !branch || !password || !confirmPwd) {
     return showMsg('Please fill in all fields.', true);
   }
+
+  // Prepend fixed +92 code for validation & DB
+  phone = '+92' + phone;
+
+  if (fullName.length < 3 || fullName.length > 100) return showMsg('Full Name must be between 3 and 100 characters.', true);
+  if (username.length < 3 || username.length > 50) return showMsg('Username must be between 3 and 50 characters.', true);
+  if (/\s/.test(username)) return showMsg('Username cannot contain spaces.', true);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showMsg('Please enter a valid email address.', true);
+  if (!/^\+92\d{10}$/.test(phone)) return showMsg('Phone must start with +92 followed by 10 digits.', true);
+  if (password.length < 6 || password.length > 255) return showMsg('Password must be between 6 and 255 characters.', true);
+  if (password !== confirmPwd) return showMsg('Passwords do not match.', true);
 
   const btn = document.getElementById('signup-btn');
   btn.textContent = 'Creating account...';
   btn.disabled = true;
 
   try {
-    const res = await fetch(`${API}/auth/register`, {
+    const res = await fetch(`${API}/auth/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fullName, email, username, password, role: selectedRole })
+      body: JSON.stringify({ fullName, email, username, phone, branch, password, role: selectedRole })
     });
     const data = await res.json();
 
     if (data.success) {
-      showMsg(data.message + ' <a href="/" class="link">Click to login!</a>', false);
-      // clear fields
-      document.getElementById('fullname').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('username').value = '';
-      document.getElementById('password').value = '';
+      showMsg('Registration successful! Redirecting to login...', false);
+      setTimeout(() => { window.location.href = '/'; }, 1500);
     } else {
       showMsg(data.message || 'Registration failed.', true);
     }
@@ -178,6 +273,36 @@ async function handleSignup() {
   } finally {
     btn.textContent = 'Sign Up →';
     btn.disabled = false;
+  }
+}
+
+function checkPassword() {
+  const pwd = document.getElementById('password').value;
+  const strEl = document.getElementById('pwd-strength');
+  if(!pwd) { strEl.style.display = 'none'; return; }
+  strEl.style.display = 'block';
+  
+  const hasChar = pwd.length >= 8;
+  const hasNum = /\d/.test(pwd);
+  const hasUpper = /[A-Z]/.test(pwd);
+  
+  if(hasChar && hasNum && hasUpper) {
+    strEl.textContent = '✨ Strong password';
+    strEl.style.color = '#22C55E';
+  } else {
+    strEl.textContent = '⚠️ Weak password — recommend 8+ chars, uppercase, and numbers';
+    strEl.style.color = '#F59E0B';
+  }
+}
+
+function togglePassword(id, el) {
+  const input = document.getElementById(id);
+  if (input.type === 'password') {
+    input.type = 'text';
+    el.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    el.textContent = '👁️';
   }
 }
 

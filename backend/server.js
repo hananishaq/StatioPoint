@@ -11,6 +11,8 @@ const cashierRoutes = require('./routes/cashier');
 const profileRoutes = require('./routes/profile');
 const productsRoutes = require('./routes/products');
 const salesRoutes = require('./routes/sales');
+const analyticsRoutes = require('./routes/analytics');
+const inventoryRoutes = require('./routes/inventory');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +31,8 @@ app.use('/api/cashier', cashierRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/sales', salesRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 // Serve correct HTML based on role
 app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, '../frontend/admin.html')));

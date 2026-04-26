@@ -10,7 +10,7 @@ router.use(verifyToken);
 router.get('/', async (req, res) => {
   try {
     const pool = getPool();
-    const result = await pool.request().query('SELECT * FROM Products ORDER BY name ASC');
+    const result = await pool.request().query('SELECT * FROM Products WHERE isActive=1 ORDER BY name ASC');
     const products = result.recordset.map(p => ({
       ...p,
       stockStatus: p.stock === 0 ? 'out' : p.stock <= p.minStock ? 'low' : 'in'
@@ -85,8 +85,17 @@ router.delete('/:id', adminOnly, async (req, res) => {
       .query('DELETE FROM Products WHERE id=@id');
     res.json({ success: true, message: 'Product deleted successfully' });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: 'Cannot delete product; it might have past sales records linked.' });
+    // If foreign key constraint triggered, soft delete it instead.
+    try {
+      const pool = getPool();
+      await pool.request()
+        .input('id', sql.Int, id)
+        .query('UPDATE Products SET isActive=0 WHERE id=@id');
+      res.json({ success: true, message: 'Product archived (it has past sales records)' });
+    } catch (innerErr) {
+      console.error(innerErr);
+      res.status(500).json({ success: false, message: 'Failed to delete or archive product.' });
+    }
   }
 });
 

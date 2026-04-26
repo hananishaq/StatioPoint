@@ -77,5 +77,34 @@ router.get('/', adminOnly, async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error fetching sales' });
   }
 });
+// GET /api/sales/:id — fetch specific sale details and its items
+router.get('/:id', async (req, res) => {
+  try {
+    const saleId = req.params.id;
+    const pool = getPool();
+    // Fetch Sale Details
+    const saleRes = await pool.request()
+      .input('id', sql.Int, saleId)
+      .query(`
+        SELECT s.id, s.totalAmount, s.paymentType, s.status, s.saleDate, u.fullName AS cashierName
+        FROM Sales s JOIN Users u ON s.userId = u.id WHERE s.id = @id
+      `);
+    if (!saleRes.recordset.length) return res.status(404).json({ success: false, message: 'Sale not found' });
+    const sale = saleRes.recordset[0];
+
+    // Fetch Sale Items
+    const itemsRes = await pool.request()
+      .input('id', sql.Int, saleId)
+      .query(`
+        SELECT p.name AS productName, si.quantity, si.unitPrice, si.subtotal
+        FROM SaleItems si JOIN Products p ON si.productId = p.id WHERE si.saleId = @id
+      `);
+    
+    res.json({ success: true, data: { ...sale, items: itemsRes.recordset } });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Server error fetching receipt' });
+  }
+});
 
 module.exports = router;

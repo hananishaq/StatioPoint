@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StatioPoint — Cashier Panel</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0A0C10;--card:#111318;--el:#181C24;--border:#252A35;--gold:#F5C842;--teal:#2DD4BF;--red:#FF4D6D;--green:#22C55E;--txt:#FFFFFF;--txt2:#D0D6E8;--txt3:#8B93A8;}
+:root{--bg:#1E293B;--card:#334155;--el:#475569;--border:#64748B;--gold:#60A5FA;--teal:#38BDF8;--red:#F87171;--green:#34D399;--txt:#F8FAFC;--txt2:#E2E8F0;--txt3:#CBD5E1;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--txt);display:flex;min-height:100vh;}
+body{background:var(--bg);font-family:'Inter', sans-serif;color:var(--txt);display:flex;min-height:100vh;}
 
 /* SIDEBAR */
 .sidebar{width:64px;flex-shrink:0;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:4px;position:sticky;top:0;height:100vh;}
 .sb-logo{width:36px;height:36px;background:var(--teal);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
 .sb-div{width:32px;height:1px;background:var(--border);margin:6px 0;}
-.nav-item{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;color:var(--txt3);font-size:17px;position:relative;border:none;background:none;}
+.nav-item{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;color:var(--txt3);font-size:20px;position:relative;border:none;background:none;}
 .nav-item:hover{background:var(--el);color:var(--txt2);}
 .nav-item.active{background:rgba(45,212,191,0.1);color:var(--teal);}
 .nav-item.active::before{content:'';position:absolute;left:-1px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--teal);border-radius:0 3px 3px 0;}
@@ -23,12 +23,12 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--txt);displ
 /* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .topbar{height:56px;flex-shrink:0;background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px;}
-.topbar-title{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;}
-.topbar-sub{font-size:10px;color:var(--txt3);letter-spacing:1.5px;text-transform:uppercase;}
+.topbar-title{font-family:'Outfit', sans-serif;font-weight:800;font-size:22px;}
+.topbar-sub{font-size:12px;color:var(--txt3);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
 .topbar-space{flex:1;}
-.role-badge{background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--teal);font-size:10px;letter-spacing:1.5px;padding:3px 10px;border-radius:100px;text-transform:uppercase;}
-.user-chip{display:flex;align-items:center;gap:8px;background:var(--el);border:1px solid var(--border);border-radius:8px;padding:6px 12px;}
-.avatar{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--teal),#2563eb);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.role-badge{background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--teal);font-size:12px;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:100px;text-transform:uppercase;}
+.user-chip{display:flex;align-items:center;gap:8px;background:var(--el);border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;}
+.avatar{width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--teal),#2563eb);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#FFFFFF;flex-shrink:0;}
 .content{flex:1;overflow-y:auto;padding:24px;background:var(--bg);}
 .screen{display:none;}.screen.active{display:block;}
 
@@ -53,42 +53,42 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--txt);displ
 .product-card:hover:not(.disabled){border-color:var(--teal);transform:translateY(-2px);}
 .product-card.disabled{opacity:.5;cursor:not-allowed;}
 .prod-emoji{font-size:28px;margin-bottom:4px;}
-.prod-name{font-size:13px;font-weight:500;color:var(--txt);line-height:1.4;}
-.prod-cat{font-size:10px;color:var(--txt3);}
-.prod-price{font-size:16px;color:var(--gold);font-family:'Syne',sans-serif;font-weight:700;}
-.prod-stock{font-size:10px;}
+.prod-name{font-size:15px;font-weight:600;color:var(--txt);line-height:1.4;}
+.prod-cat{font-size:12px;color:var(--txt3);}
+.prod-price{font-size:18px;color:var(--gold);font-family:'Outfit', sans-serif;font-weight:800;}
+.prod-stock{font-size:12px;font-weight:500;}
 
 /* CART */
-.cart-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.cart-title{font-family:'Outfit', sans-serif;font-weight:800;font-size:20px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .cart-items{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
-.cart-empty{text-align:center;color:var(--txt3);font-size:12px;padding:40px 0;}
-.cart-item{background:var(--el);border:1px solid var(--border);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:10px;}
-.cart-item-name{flex:1;font-size:12px;color:var(--txt);}
-.cart-item-price{font-size:12px;color:var(--gold);flex-shrink:0;}
+.cart-empty{text-align:center;color:var(--txt3);font-size:14px;padding:40px 0;}
+.cart-item{background:var(--el);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:10px;}
+.cart-item-name{flex:1;font-size:14px;color:var(--txt);font-weight:500;}
+.cart-item-price{font-size:14px;font-weight:700;color:var(--gold);flex-shrink:0;}
 .qty-ctrl{display:flex;align-items:center;gap:6px;}
-.qty-btn{width:22px;height:22px;border-radius:5px;border:1px solid var(--border);background:var(--card);color:var(--txt);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.qty-btn{width:26px;height:26px;border-radius:5px;border:1px solid var(--border);background:var(--card);color:var(--txt);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 .qty-btn:hover{border-color:var(--teal);color:var(--teal);}
-.qty-num{font-size:12px;min-width:20px;text-align:center;}
-.rm-btn{background:none;border:none;color:var(--txt3);cursor:pointer;font-size:14px;}
+.qty-num{font-size:14px;font-weight:600;min-width:24px;text-align:center;}
+.rm-btn{background:none;border:none;color:var(--txt3);cursor:pointer;font-size:16px;}
 .rm-btn:hover{color:var(--red);}
-.cart-divider{height:1px;background:var(--border);margin:10px 0;}
+.cart-divider{height:1px;background:var(--border);margin:12px 0;}
 .cart-total{display:flex;align-items:center;margin-bottom:12px;}
-.cart-total-lbl{font-size:12px;color:var(--txt3);}
-.cart-total-val{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--gold);}
+.cart-total-lbl{font-size:14px;color:var(--txt3);font-weight:600;}
+.cart-total-val{font-family:'Outfit', sans-serif;font-weight:800;font-size:26px;color:var(--gold);}
 .pay-row{display:flex;gap:8px;margin-bottom:12px;}
-.pay-opt{flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--txt3);font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;text-align:center;transition:all .15s;}
+.pay-opt{flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--txt3);font-family:'Inter', sans-serif;font-size:12px;cursor:pointer;text-align:center;transition:all .15s;}
 .pay-opt.active{background:rgba(45,212,191,.1);border-color:var(--teal);color:var(--teal);}
-.btn-checkout{width:100%;height:46px;background:var(--gold);border:none;border-radius:10px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#0A0C10;cursor:pointer;transition:background .15s;}
-.btn-checkout:hover{background:#ffd000;}
+.btn-checkout{width:100%;height:46px;background:var(--gold);border:none;border-radius:10px;font-family:'Inter', sans-serif;font-size:13px;font-weight:500;color:#FFFFFF;cursor:pointer;transition:background .15s;}
+.btn-checkout:hover{background:#2563EB;}
 .btn-checkout:disabled{opacity:.5;cursor:not-allowed;}
 
 /* MY SALES TABLE */
 .tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
 .tbl-head{display:grid;padding:10px 20px;background:var(--el);border-bottom:1px solid var(--border);}
-.tbl-head span,.tbl-row span{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);}
-.tbl-row{display:grid;padding:12px 20px;border-bottom:1px solid var(--border);align-items:center;font-size:12px;color:var(--txt2);}
+.tbl-head span,.tbl-row span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--txt3);font-weight:700;}
+.tbl-row{display:grid;padding:14px 20px;border-bottom:1px solid var(--border);align-items:center;font-size:14px;color:var(--txt2);font-weight:500;}
 .tbl-row:last-child{border-bottom:none;}
-.badge{display:inline-flex;align-items:center;font-size:10px;padding:3px 10px;border-radius:100px;}
+.badge{display:inline-flex;align-items:center;font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;letter-spacing:.5px;}
 .badge-green{background:rgba(34,197,94,.1);border:1px solid #22C55E;color:#22C55E;}
 .badge-red{background:rgba(255,77,109,.1);border:1px solid #FF4D6D;color:#FF4D6D;}
 .badge-teal{background:rgba(45,212,191,.1);border:1px solid #2DD4BF;color:#2DD4BF;}
@@ -97,20 +97,51 @@ body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--txt);displ
 .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px;}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .field{margin-bottom:14px;}
-.field label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:6px;}
-input{width:100%;background:var(--el);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'DM Mono',monospace;font-size:13px;color:var(--txt);outline:none;transition:border-color .15s;}
+.field label{display:block;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;}
+input{width:100%;background:var(--el);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'Inter', sans-serif;font-size:15px;font-weight:500;color:var(--txt);outline:none;transition:border-color .15s;}
 input:focus{border-color:var(--teal);}
 input::placeholder{color:var(--txt3);}
 input[readonly]{color:var(--txt3);}
-.btn{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:12px;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;transition:all .18s;}
-.btn-gold{background:var(--gold);color:#0A0C10;font-weight:500;}
+.btn{display:inline-flex;align-items:center;gap:6px;font-family:'Inter', sans-serif;font-size:14px;font-weight:600;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;transition:all .18s;}
+.btn-gold{background:var(--gold);color:#FFFFFF;font-weight:600;}
 .btn-outline{background:none;border:1px solid var(--border);color:var(--txt2);}
 .btn-outline:hover{border-color:var(--teal);color:var(--teal);}
-.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:16px;}
+.sec-title{font-family:'Outfit', sans-serif;font-weight:800;font-size:20px;margin-bottom:16px;}
 .profile-hero{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;align-items:center;gap:20px;margin-bottom:20px;}
-.avatar-lg{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#2563eb);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:#fff;flex-shrink:0;}
+.avatar-lg{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#2563eb);display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif;font-weight:800;font-size:32px;color:#fff;flex-shrink:0;}
 
-#toast{position:fixed;bottom:24px;right:24px;z-index:999;padding:12px 20px;border-radius:10px;font-size:13px;display:none;box-shadow:0 8px 24px rgba(0,0,0,.4);}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:center;justify-content:center;}
+.modal-bg.show{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;width:460px;max-width:95vw;}
+.modal-title{font-family:'Outfit', sans-serif;font-weight:800;font-size:22px;margin-bottom:20px;}
+
+/* PRINT */
+@media print {
+  body * { visibility: hidden; }
+  #receipt-modal, #receipt-modal * { visibility: visible; }
+  #receipt-modal { position: absolute; left: 0; top: 0; width:100%; align-items:flex-start; padding-top:20px; background:none !important; }
+  .modal { box-shadow:none; border:none; width:100%; max-width:100%; padding:0; }
+  .no-print { display: none !important; }
+}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;z-index:999;padding:12px 20px;border-radius:10px;font-size:13px;display:none;box-shadow:0 8px 24px rgba(0,0,0,.1);}
+
+/* Light Theme */
+body.light-theme {
+  --bg: #F8FAFC;
+  --card: #FFFFFF;
+  --el: #F1F5F9;
+  --border: #E2E8F0;
+  --txt: #0F172A;
+  --txt2: #334155;
+  --txt3: #64748B;
+}
+
+/* Theme Toggle */
+.theme-toggle { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--txt3); transition: all 0.2s ease; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.theme-toggle:hover { color: var(--teal); background: rgba(45,212,191,0.1); transform: scale(1.05); }
 </style>
 </head>
 <body>
@@ -119,10 +150,10 @@ input[readonly]{color:var(--txt3);}
 <div class="sidebar">
   <div class="sb-logo">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <rect x="3" y="5" width="10" height="2" rx="1" fill="#0A0C10"/>
-      <rect x="3" y="9" width="15" height="2" rx="1" fill="#0A0C10"/>
-      <rect x="3" y="13" width="7" height="2" rx="1" fill="#0A0C10"/>
-      <circle cx="17" cy="17" r="4" fill="#0A0C10"/>
+      <rect x="3" y="5" width="10" height="2" rx="1" fill="#FFFFFF"/>
+      <rect x="3" y="9" width="15" height="2" rx="1" fill="#FFFFFF"/>
+      <rect x="3" y="13" width="7" height="2" rx="1" fill="#FFFFFF"/>
+      <circle cx="17" cy="17" r="4" fill="#FFFFFF"/>
       <rect x="16.2" y="14.5" width="1.6" height="3" rx=".8" fill="#2DD4BF"/>
       <rect x="15" y="16.2" width="4" height="1.6" rx=".8" fill="#2DD4BF"/>
     </svg>
@@ -143,10 +174,11 @@ input[readonly]{color:var(--txt3);}
       <div class="topbar-sub"   id="page-sub">CHECKOUT</div>
     </div>
     <div class="topbar-space"></div>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
     <span class="role-badge">🧾 Cashier</span>
     <div class="user-chip">
       <div class="avatar" id="avatar-letter">C</div>
-      <span style="font-size:12px;color:var(--txt2)" id="topbar-name">Cashier</span>
+      <span style="font-size:14px;font-weight:600;color:var(--txt2)" id="topbar-name">Cashier</span>
     </div>
   </div>
 
@@ -172,7 +204,7 @@ input[readonly]{color:var(--txt3);}
 
         <!-- RIGHT: Cart -->
         <div class="cart-panel">
-          <div class="cart-title">🛒 Cart <span id="cart-count" style="background:var(--teal);color:#0A0C10;border-radius:100px;font-size:10px;padding:2px 8px;font-weight:700">0</span></div>
+          <div class="cart-title">🛒 Cart <span id="cart-count" style="background:var(--teal);color:#FFFFFF;border-radius:100px;font-size:10px;padding:2px 8px;font-weight:700">0</span></div>
           <div class="cart-items" id="cart-items">
             <div class="cart-empty">Cart is empty.<br>Click a product to add it.</div>
           </div>
@@ -206,7 +238,7 @@ input[readonly]{color:var(--txt3);}
       <div class="profile-hero">
         <div class="avatar-lg" id="pf-avatar">C</div>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;margin-bottom:4px" id="pf-name-display">—</div>
+          <div style="font-family:'Outfit', sans-serif;font-weight:800;font-size:20px;margin-bottom:4px" id="pf-name-display">—</div>
           <div style="font-size:12px;color:var(--txt3);margin-bottom:8px" id="pf-email-display">—</div>
           <span class="badge badge-teal">🧾 Cashier</span>
         </div>
@@ -238,11 +270,54 @@ input[readonly]{color:var(--txt3);}
   </div>
 </div>
 
+<!-- RECEIPT MODAL -->
+<div class="modal-bg" id="receipt-modal">
+  <div class="modal" style="width:360px;">
+    <div class="modal-title" style="text-align:center;margin-bottom:10px;">🧾 StatioPoint Receipt</div>
+    <div id="receipt-content" style="font-family:monospace;font-size:12px;color:var(--txt2);line-height:1.6;">
+       Loading...
+    </div>
+    <div class="no-print" style="display:flex;justify-content:center;gap:10px;margin-top:20px;">
+      <button class="btn btn-gold" onclick="window.print()">🖨️ Print Receipt</button>
+      <button class="btn btn-outline" onclick="closeReceipt()">Close</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script>
 const API   = '/api';
 const token = localStorage.getItem('sp_token');
+
+// Theme Logic
+const themeToggleBtn = document.getElementById('theme-toggle');
+let isLight = localStorage.getItem('sp_theme') === 'light';
+
+function applyTheme() {
+  if (isLight) {
+    document.body.classList.add('light-theme');
+    if(themeToggleBtn) {
+      themeToggleBtn.textContent = '🌙';
+      themeToggleBtn.title = "Switch to Dark Theme";
+    }
+  } else {
+    document.body.classList.remove('light-theme');
+    if(themeToggleBtn) {
+      themeToggleBtn.textContent = '☀️';
+      themeToggleBtn.title = "Switch to Light Theme";
+    }
+  }
+}
+
+function toggleTheme() {
+  isLight = !isLight;
+  localStorage.setItem('sp_theme', isLight ? 'light' : 'dark');
+  applyTheme();
+}
+
+// Apply on load
+applyTheme();
 const user  = JSON.parse(localStorage.getItem('sp_user') || '{}');
 
 if (!token || user.role !== 'cashier') window.location.href = '/';
@@ -394,6 +469,7 @@ async function processSale() {
     cart=[];
     renderCart();
     loadProducts(); // refresh stock
+    openReceipt(data.saleId);
   } else {
     toast(data.message,'error');
   }
@@ -407,7 +483,7 @@ async function loadMySales() {
   document.getElementById('mysales-body').innerHTML = data.data.length
     ? data.data.map(s=>`
         <div class="tbl-row" style="grid-template-columns:2fr 1fr 1fr 1fr 90px;">
-          <span style="color:var(--txt);font-size:13px">${s.productName}</span>
+          <span style="color:var(--txt);font-size:15px;font-weight:600;">${s.productName}</span>
           <span>${s.quantity}</span>
           <span style="color:var(--gold)">Rs ${Number(s.totalAmount).toLocaleString()}</span>
           <span>${s.paymentType}</span>
@@ -443,6 +519,39 @@ async function changePass() {
 const gv = id=>document.getElementById(id)?.value?.trim()||'';
 const sv = (id,v)=>{ const el=document.getElementById(id); if(el) el.value=v; };
 const logout = ()=>{ localStorage.clear(); window.location.href='/'; };
+
+// ── RECEIPT ───────────────────────────────────────
+function closeReceipt() { document.getElementById('receipt-modal').classList.remove('show'); }
+async function openReceipt(saleId) {
+  document.getElementById('receipt-content').innerHTML = '<div style="text-align:center;padding:20px;">Loading receipt...</div>';
+  document.getElementById('receipt-modal').classList.add('show');
+  
+  const res = await api('/sales/' + saleId);
+  if(!res.success) {
+     document.getElementById('receipt-content').innerHTML = '<div style="color:var(--red);text-align:center;">Error loading receipt.</div>';
+     return;
+  }
+  const d = res.data;
+  let html = `
+    <div style="text-align:center;margin-bottom:14px;">
+      <div style="font-size:14px;color:var(--txt);font-weight:700;margin-bottom:4px;">Sale #${d.id}</div>
+      <div>${new Date(d.saleDate).toLocaleString()}</div>
+      <div>Cashier: ${d.cashierName}</div>
+    </div>
+    <div style="border-top:1px dashed var(--border);border-bottom:1px dashed var(--border);padding:14px 0;margin-bottom:14px;">
+      <table style="width:100%;text-align:left;border-collapse:collapse;">
+        <tr style="color:var(--txt3)"><th style="padding-bottom:8px">Item</th><th style="text-align:right;padding-bottom:8px">Qty</th><th style="text-align:right;padding-bottom:8px">Amt</th></tr>
+        ${d.items.map(i => `<tr><td style="padding-bottom:4px;color:var(--txt)">${i.productName}</td><td style="text-align:right;padding-bottom:4px">${i.quantity}</td><td style="text-align:right;padding-bottom:4px">${i.subtotal}</td></tr>`).join('')}
+      </table>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-weight:bold;font-size:14px;color:var(--txt)">
+      <span>Total:</span>
+      <span style="color:var(--gold)">Rs ${d.totalAmount}</span>
+    </div>
+    <div style="text-align:center;margin-top:14px;text-transform:uppercase;font-size:10px;color:var(--txt3);letter-spacing:1px;">Payment: ${d.paymentType}</div>
+  `;
+  document.getElementById('receipt-content').innerHTML = html;
+}
 
 // Init
 loadProducts();
